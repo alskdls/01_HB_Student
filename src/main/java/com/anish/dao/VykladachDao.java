@@ -40,6 +40,14 @@ public class VykladachDao {
         session.close();
     }
 
+    public void deleteAll() {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        session.createQuery("DELETE FROM Vykladach").executeUpdate();
+        tx.commit();
+        session.close();
+    }
+
     public List<Vykladach> findAll() {
         List<Vykladach> list = HibernateSessionFactoryUtil.getSessionFactory()
                 .openSession()
